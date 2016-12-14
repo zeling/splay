@@ -6,5 +6,5 @@ I added several benchmarks to compare the splay based sequence with the finger-t
 I only benchmarked the fromList function from the both sequence implementations, loads of other benchmarks
 should be added later. 
 
-See the [results][https://github.com/zeling/splay/blob/master/seq-bench.html] here.
+See the [results](https://rawgit.com/zeling/splay/master/seq-bench.html) here.
 

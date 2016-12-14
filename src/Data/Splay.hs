@@ -31,6 +31,7 @@ module Data.Splay
 
 import Control.Applicative
 import Data.Monoid
+import Control.DeepSeq (NFData(rnf))
 import Prelude
 
 -- | A representation of a sequence of values of type @a@ using a splay
@@ -61,6 +62,10 @@ instance Measured s a => Monoid (Splay s a) where
     _ -> error "splay: internal error"
 
   mempty = Leaf
+
+instance (NFData s, NFData a) => NFData (Splay s a) where
+  rnf Leaf = ()
+  rnf (Branch s a left right) = rnf s `seq` rnf a `seq` rnf left `seq` rnf right
 
 splayRightmost :: Measured s a => Splay s a -> Splay s a
 splayRightmost t = go id t

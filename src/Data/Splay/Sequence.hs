@@ -31,6 +31,7 @@ import Data.Foldable hiding (null, length)
 import Data.Function
 import Data.Monoid
 import Data.Traversable
+import Control.DeepSeq (NFData(rnf))
 import Prelude hiding (null, length, splitAt, foldr)
 
 import qualified Data.Splay as S
@@ -70,6 +71,15 @@ instance Ord a => Ord (Seq a) where
 instance Show a => Show (Seq a) where
   showsPrec p xs =
     showParen (p > 10) $ showString "fromList " . shows (toList xs)
+
+instance NFData Size where
+  rnf (Size size) = rnf size
+
+instance (NFData a) => NFData (Item a) where
+  rnf (Item item) = rnf item
+
+instance (NFData a) => NFData (Seq a) where
+  rnf (Seq xs) = rnf xs
 
 -- | Construct a sequence of only one element
 singleton :: a -> Seq a

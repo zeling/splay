@@ -30,6 +30,18 @@ Library
   Exposed-Modules:      Data.Splay,
                         Data.Splay.Sequence
   Build-Depends:        base >= 4.7.0.0 && < 5
+                      , deepseq >= 1.4
+
+benchmark splay-sequence-benchmarks
+  build-depends:        base
+                      , criterion
+                      , splay
+                      , containers >= 0.5
+  hs-source-dirs:       bench
+  ghc-options:          -Wall
+  main-is:              Benchmark.hs
+  default-language:     Haskell2010
+  type:                 exitcode-stdio-1.0
 
 Source-Repository head
   Type: git
